@@ -1,8 +1,13 @@
-# VRT — Generic Visual Regression Testing Engine
+# Lookout — Visual Regression Testing Engine
 
-A standalone, app-agnostic visual regression platform built on
-[Playwright Test](https://playwright.dev). Point it at **any** deployed web app
-via a base URL — no assumptions about the frontend repo, framework, or routes.
+A lightweight visual regression testing tool that leverages HAR files to
+stabilize application state across runs. It replays consistent network responses
+from recorded HAR snapshots so tests operate on identical data every time,
+ensuring comparisons focus purely on UI and layout.
+
+Built on [Playwright Test](https://playwright.dev) and app-agnostic: point it at
+**any** deployed web app via a base URL — no assumptions about the frontend repo,
+framework, or routes.
 
 It deliberately leans on Playwright's native `toHaveScreenshot()`, which already
 *is* a production-grade VRT engine: pixelmatch diffing, baseline management,
