@@ -1,5 +1,6 @@
 import { defineConfig, devices } from '@playwright/test';
 import { config } from './core/config';
+import { manifest } from './core/manifest';
 
 // The VRT engine. Playwright's runner + toHaveScreenshot provide the diffing,
 // baseline management, --update-snapshots, expected/actual/diff images, the
@@ -17,8 +18,7 @@ export default defineConfig({
   reporter: [['list'], ['html', { open: 'never' }]],
 
   use: {
-    baseURL: config.baseUrl,
-    viewport: config.viewport,
+    baseURL: manifest.baseUrl,
     // OS-independent rendering so baselines are portable across machines/CI.
     deviceScaleFactor: 1,
   },
@@ -30,10 +30,10 @@ export default defineConfig({
     },
   },
 
-  projects: [
-    {
-      name: 'chromium',
-      use: { ...devices['Desktop Chrome'], viewport: config.viewport },
-    },
-  ],
+  // One project per viewport from the manifest. Playwright runs every page at
+  // every viewport and suffixes baselines with the project name automatically.
+  projects: manifest.viewports.map((v) => ({
+    name: `${v.width}x${v.height}`,
+    use: { ...devices['Desktop Chrome'], viewport: v },
+  })),
 });

@@ -1,0 +1,11 @@
+{
+  "baseUrl": "https://example.com",
+  "viewports": [
+    { "width": 1280, "height": 720 },
+    { "width": 375, "height": 667 }
+  ],
+  "pages": [
+    { "name": "home", "path": "/" },
+    { "name": "home-heading", "path": "/", "selector": "h1" }
+  ]
+}
