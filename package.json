@@ -1,0 +1,17 @@
+{
+  "name": "vrt",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Generic, app-agnostic Visual Regression Testing engine built on Playwright.",
+  "scripts": {
+    "vrt": "playwright test",
+    "vrt:update": "playwright test --update-snapshots",
+    "vrt:record": "node runners/record-har.js",
+    "report": "playwright show-report"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.49.0",
+    "@types/node": "^20.0.0",
+    "typescript": "^5.4.0"
+  }
+}
